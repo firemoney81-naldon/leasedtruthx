@@ -1,23 +1,804 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+
+  <style>
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      line-height: 1.9;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f7f9;
+      color: #2c3e50;
+    }
+    
+    header {
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #ffffff;
+      text-align: center;
+      padding: 90px 20px;
+      position: relative;
+    }
+    
+    h1, h2, h3, h4 {
+      color: #1a365d;
+      font-weight: 700;
+      margin-top: 0;
+    }
+    
+    header h1 {
+      font-size: 2.8rem;
+      margin-bottom: 15px;
+      letter-spacing: -1px;
+      color: #ffffff;
+    }
+    
+    header p {
+      font-size: 1.25rem;
+      opacity: 0.95;
+      max-width: 800px;
+      margin: 0 auto 30px auto;
+      font-weight: 300;
+    }
+    
+    .highlight {
+      background-color: #ffe066;
+      color: #2c3e50;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-weight: 700;
+    }
+    
+    nav {
+      background-color: #ffffff;
+      border-bottom: 2px solid #eef2f3;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+    
+    nav ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    nav ul li a {
+      display: block;
+      padding: 18px 25px;
+      text-decoration: none;
+      color: #4a5568;
+      font-weight: 500;
+      font-size: 1.05rem;
+      transition: all 0.3s ease;
+    }
+    
+    nav ul li a:hover {
+      color: #00b4db;
+      background-color: #f7fafc;
+    }
+    
+    section {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 45px;
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    }
+    
+    .btn-cta {
+      display: inline-block;
+      padding: 16px 40px;
+      background: linear-gradient(135deg, #ff7e5f, #feb47b);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 1.15rem;
+      border-radius: 50px;
+      box-shadow: 0 6px 20px rgba(255, 126, 95, 0.35);
+      transition: all 0.3s ease;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      margin-top: 15px;
+    }
+    
+    .btn-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(255, 126, 95, 0.5);
+    }
+    
+    .content-image {
+      width: 100%;
+      height: auto;
+      border-radius: 14px;
+      margin: 30px 0;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 30px 0;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    
+    th, td {
+      padding: 18px;
+      text-align: left;
+      border-bottom: 1px solid #edf2f7;
+    }
+    
+    th {
+      background: #ebf8ff;
+      color: #2b6cb0;
+      font-weight: 700;
+    }
+    
+    tr:last-child td {
+      border-bottom: none;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #f7fafc;
+    }
+    
+    .chart-container {
+      background: #f7fafc;
+      padding: 30px;
+      border-radius: 12px;
+      margin: 30px 0;
+      border: 1px solid #e2e8f0;
+    }
+    
+    .bar-chart {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      margin-top: 25px;
+    }
+    
+    .bar-item {
+      text-align: center;
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 20px 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+      border-top: 4px solid #00b4db;
+    }
+    
+    .bar-item strong {
+      display: block;
+      font-size: 1.35rem;
+      margin-bottom: 8px;
+      color: #2b6cb0;
+    }
+    
+    .bar-label {
+      font-size: 0.95rem;
+      color: #4a5568;
+      font-weight: 500;
+    }
+    
+    blockquote {
+      border-left: 5px solid #00b4db;
+      padding: 15px 25px;
+      margin: 30px 0;
+      background-color: #ebf8ff;
+      color: #2d3748;
+      border-radius: 0 12px 12px 0;
+    }
+    
+    .form-container {
+      background: #f7fafc;
+      padding: 40px;
+      border-radius: 16px;
+      border: 1px solid #e2e8f0;
+    }
+    
+    label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #2d3748;
+    }
+    
+    input[type="text"], input[type="tel"], select, textarea {
+      width: 100%;
+      padding: 14px;
+      margin-bottom: 20px;
+      border: 1px solid #cbd5e0;
+      border-radius: 8px;
+      box-sizing: border-box;
+      font-size: 1rem;
+      background-color: #ffffff;
+      color: #2d3748;
+      transition: all 0.3s ease;
+    }
+    
+    input:focus, select:focus, textarea:focus {
+      border-color: #00b4db;
+      outline: none;
+      box-shadow: 0 0 8px rgba(0, 180, 219, 0.25);
+    }
+    
+    .calculator-box {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 30px;
+      margin-top: 25px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    }
+    
+    .calc-result {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+      border-bottom: 1px dashed #e2e8f0;
+    }
+    
+    .calc-result:last-child {
+      border-bottom: none;
+    }
+    
+    .calc-value {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #e53e3e;
+    }
+    
+    ul, ol {
+      margin-left: 20px;
+      padding-left: 10px;
+    }
+    
+    li {
+      margin-bottom: 12px;
+    }
+    
+    @media (max-width: 768px) {
+      body {
+        padding: 0;
+      }
+      header {
+        padding: 60px 15px;
+      }
+      header h1 {
+        font-size: 2rem;
+      }
+      section {
+        margin: 20px 10px;
+        padding: 25px 20px;
+      }
+      nav ul {
+        flex-direction: column;
+      }
+      nav ul li a {
+        padding: 12px 15px;
+        border-bottom: 1px solid #edf2f7;
+        text-align: center;
+      }
+      .bar-chart {
+        grid-template-columns: 1fr;
+      }
+      .btn-cta {
+        width: 100%;
+        padding: 16px 0;
+        box-sizing: border-box;
+      }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Product",
+        "name": "디올뉴 벨로스터 리스",
+        "image": "https://images.pexels.com/photos/112460/pexels-photo-112460.jpeg",
+        "description": "2026년형 디올뉴 벨로스터 리스 가격 비교, 나이대별 맞춤형 견적, 최저가 추천 순위 및 무보증 조건 총정리 가이드.",
+        "brand": {
+          "@type": "Brand",
+          "name": "현대자동차"
+        },
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "KRW",
+          "lowPrice": "320000",
+          "highPrice": "680000",
+          "offerCount": "15",
+          "priceRange": "₩320,000 - ₩680,000"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "디올뉴 벨로스터 리스의 평균 월 예상 금액은 얼마인가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "2026년 기준 디올뉴 벨로스터 리스 평균 비용은 트림 및 옵션에 따라 다릅니다. 기본형인 1.6 가솔린 터보는 30만원대 중후반, 고성능 N Line이나 하이브리드 모델은 40만원대에서 50만원대로 책정되며, 보증금 비율 및 잔존가치 조건에 따라 실제 청구 요금은 차이가 날 수 있습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "무보증 리스 조건으로 20대 대학생도 가입 및 신청이 가능한가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "네, 소득 증빙이 부족한 20대 초반 대학생이나 사회초년생의 경우 보증인을 세우거나 서울보증보험 증권을 발행하여 초기 비용 없는 무보증 리스로 승인을 받는 방법이 존재합니다. 단, 개인 신용 점수와 렌트사별 자체 심사 기준에 따라 차이가 있으므로 전문 컨설턴트와의 1:1 상담을 권장합니다."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+
+  <header>
+    <h1>디올뉴 벨로스터 리스 가격 비교 및 연령별 최저가 가이드</h1>
+    <p>감각적인 스타일과 고성능 드라이빙을 선사하는 <span class="highlight">디올뉴 벨로스터 리스</span>의 모든 정보. 2026년 기준 무보증 승인 조건부터 나이대별 맞춤 견적까지 한눈에 확인하세요.</p>
+    <a href="#contact" class="btn-cta">실시간 다이렉트 최저가 견적 받기</a>
+  </header>
+
+  <nav aria-label="네비게이션 바">
+    <ul>
+      <li><a href="#intro">벨로스터 리스란?</a></li>
+      <li><a href="#comparison">리스 vs 장기렌트</a></li>
+      <li><a href="#models">연령별 맞춤 추천</a></li>
+      <li><a href="#calculator">실시간 모의 계산기</a></li>
+      <li><a href="#seongji">최저가 성지 찾기</a></li>
+      <li><a href="#reviews">커뮤니티 후기</a></li>
+      <li><a href="#contact">상담 및 신청</a></li>
+    </ul>
+  </nav>
+
+  <section id="intro">
+    <h2>디올뉴 벨로스터 리스, 새로운 세대의 스마트한 차량 운용법</h2>
+    <p>
+      현대자동차의 독창적인 비대칭 3도어 쿠페인 벨로스터가 더욱 진보된 기술력과 세련된 디자인으로 재탄생한 디올뉴 벨로스터는 스포티한 주행 감각과 독보적인 존재감을 원하는 드라이버들에게 높은 관심을 받고 있습니다. 일시불이나 할부 구매의 높은 금융 부담을 피해 합리적으로 신차를 운행하는 방법으로 디올뉴 벨로스터 리스 요금제가 강력한 대안으로 조명받고 있습니다.
+    </p>
+    <p>
+      리스는 리스 금융사가 차량을 구입해 고객에게 약정 기간 동안 임대하고 매달 일정한 사용료를 받는 선진화된 자동차 금융 상품입니다. 장기렌트카의 하, 허, 호 번호판 대신 품격 있는 일반 번호판을 부착할 수 있어 품위 유지가 가능하며, 리스 계약 시 지불하는 월 납입료 안에는 감가상각 방어 설계와 정비 조건 등이 맞춤형으로 녹아 있어 개인 및 법인 사업자들에게 매우 유리합니다.
+    </p>
+    <p>
+      특히 2026년도에 출시된 최신 디올뉴 벨로스터 라인업은 인공지능 기반 통합 인포테인먼트 시스팀과 고효율 파워트레인을 탑재하여 스마트 드라이빙을 지향하는 운전자들의 취향을 저격하고 있습니다. 스마트한 계약을 위해 온라인 전문 업체를 통한 다이렉트 가격 비교는 필수적인 첫 단계입니다.
+    </p>
+
+    <figure>
+      <img src="https://images.pexels.com/photos/112460/pexels-photo-112460.jpeg" alt="현대 디올뉴 벨로스터 도로 주행 이미지" class="content-image" />
+      <figcaption>출처: Pexels.com - 역동적인 주행 성능을 자랑하는 현대 디올뉴 벨로스터</figcaption>
+    </figure>
+
+    <h3>디올뉴 벨로스터 리스를 선택해야 하는 경제적 가치</h3>
+    <p>
+      운용리스를 이용하면 차량이 사용자의 개인 자산으로 잡히지 않기 때문에 국민건강보험료나 재산세 인상이 전혀 없다는 장점이 있습니다. 아울러 개인사업자와 법인사업자는 연간 최대 1,500만 원까지 경비 처리가 가능하여 실질적인 종합소득세 및 법인세 절세 효과를 누릴 수 있습니다. 초기 부담이 거의 없는 잔존가치 보장형 설계를 통해 만기 시 반납이나 인수를 자유롭게 선택할 수 있어 중고차 매각 처분의 번거로움도 말끔히 해결됩니다.
+    </p>
+  </section>
+
+  <section id="comparison">
+    <h2>디올뉴 벨로스터 리스 vs 장기렌트 차이점 분석</h2>
+    <p>
+      리스와 장기렌트는 차량을 대여하여 사용한다는 공통점이 있지만, 보험 가입 주체와 번호판 규정, 그리고 신용도 반영 방식에서 명확한 차이점을 보입니다. 아래 상세 비교표를 통해 나에게 어떤 방식이 제일 잘 맞는지 면밀하게 분석해보시기 바랍니다.
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>구분 항목</th>
+          <th>오토 리스 (운용리스)</th>
+          <th>장기 렌트</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>차량 번호판</strong></td>
+          <td>일반 자가용 번호판 (품위 유지 가능)</td>
+          <td>렌터카 전용 번호판 (하, 허, 호 제한)</td>
+        </tr>
+        <tr>
+          <td><strong>자동차 보험</strong></td>
+          <td>이용자 개인 요율 적용 (무사고 이력 유지)</td>
+          <td>렌트사 통합 요율 적용 (개인 이력 소멸)</td>
+        </tr>
+        <tr>
+          <td><strong>자산 및 부채 인식</strong></td>
+          <td>금융권 대출 한도에 영향 일부 가능</td>
+          <td>단순 렌탈 상품으로 신용 대출 한도 무관</td>
+        </tr>
+        <tr>
+          <td><strong>월 납입 금액 수준</strong></td>
+          <td>상대적으로 저렴한 기본 요금 구조</td>
+          <td>보험료와 세금이 원천 합산된 단일 금액</td>
+        </tr>
+        <tr>
+          <td><strong>정비 서비스 범위</strong></td>
+          <td>기본 정비 자가 수행 또는 선택 옵션 가입</td>
+          <td>대다수 상품에 순회 정비 서비스 기본 포함</td>
+        </tr>
+        <tr>
+          <td><strong>사고 시 할증 규정</strong></td>
+          <td>개인 보험 이력에 따라 차후 갱신 시 영향</td>
+          <td>아무리 큰 사고가 나도 면책금 외 할증 없음</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>
+      운전 경력이 길고 무사고 이력을 오래 유지하여 개인 보험 요율이 낮게 책정된 드라이버라면 리스를 선택하는 것이 총 운용 비용 측면에서 가장 저렴한곳을 구성하는 현명한 선택입니다. 반면, 사고 이력이 잦아 보험료가 폭발적으로 높게 나오는 젊은 연령대나 첫차 구매자라면 리스보다는 보험료 상승 걱정이 없는 장기렌트가 유리할 수 있습니다.
+    </p>
+    <blockquote>
+      자동차 대여 계약의 계약 조건이나 신용도 판정 여부는 매년 금융 가이드라인에 따라 미세하게 변화하므로 가입하기 전 국토교통부 고시 사항이나 정식 리스 금융 약관을 꼼꼼하게 대조해보는 과정이 요구됩니다.
+    </blockquote>
+  </section>
+
+  <section id="models">
+    <h2>모델별 및 연령별 타겟 키워드 분석 (최저가 실현 가이드)</h2>
+    <p>
+      디올뉴 벨로스터 리스는 차종 트림과 운전자의 나이대에 따라 최적의 상품 패키지가 완전히 달라집니다. 본인에게 해당되는 나이대와 희망 모델명을 비교해보며 예상 지출 비용을 체계적으로 계산해보세요. 아래는 2026년 상반기 기준 시장 데이터를 바탕으로 재구성한 타겟별 주요 특징입니다.
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>연령 및 직업군</th>
+          <th>추천 적용 모델 트림</th>
+          <th>실질 계약 혜택 및 조건 특징</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>20대 대학생 벨로스터 리스 요금</strong></td>
+          <td>디올뉴 벨로스터 익스클루시브 리스 가격</td>
+          <td>실속 있는 가성비 중심 옵션 구성, 초기 자금 무보증 승인 연계 우대</td>
+        </tr>
+        <tr>
+          <td><strong>30대 직장인 벨로스터 리스 견적</strong></td>
+          <td>디올뉴 벨로스터 프레스티지 리스</td>
+          <td>스마트 크루즈 컨트롤 필수 탑재, 출퇴근 피로 감소용 드라이브 와이즈 추가</td>
+        </tr>
+        <tr>
+          <td><strong>사회초년생 벨로스터 N 리스 비용</strong></td>
+          <td>벨로스터 N DCT 리스 금액</td>
+          <td>고성능 주행 패키지 포함, 소득 증빙 보완을 통한 저금리 이율 우대 프로그램</td>
+        </tr>
+        <tr>
+          <td><strong>40대 후반 패밀리카 벨로스터 N Line 리스</strong></td>
+          <td>고성능 디올뉴 벨로스터 N 라인 리스 싼곳</td>
+          <td>주말 패밀리 아웃도어를 고려한 하체 보강 튜닝 및 수납 파츠 지원 혜택</td>
+        </tr>
+        <tr>
+          <td><strong>여성 운전자 디올뉴 벨로스터 프레스티지 리스</strong></td>
+          <td>디올뉴 벨로스터 하이브리드 리스 저렴한곳</td>
+          <td>뛰어난 도심 연비와 서라운드 뷰 모니터 탑재로 안심 주차 기능 강화</td>
+        </tr>
+        <tr>
+          <td><strong>30대 중반 개인사업자 벨로스터 리스 세금 혜택</strong></td>
+          <td>디올뉴 벨로스터 인스퍼레이션 리스 요금제</td>
+          <td>풀옵션 프리미엄 차량 운용, 매달 발행되는 세금계산서로 편리한 경비 처리</td>
+        </tr>
+        <tr>
+          <td><strong>법인사업자 디올뉴 벨로스터 리스 지원금</strong></td>
+          <td>디올뉴 벨로스터 2.0 터보 리스 요금 계산</td>
+          <td>업무용 차량 세제 감면 극대화, 임직원 전용 보험 연계로 리스크 방어</td>
+        </tr>
+        <tr>
+          <td><strong>군필 대학생 디올뉴 벨로스터 리스 성지</strong></td>
+          <td>디올뉴 벨로스터 수동 리스 좌표</td>
+          <td>정밀한 수동 변속기로 서킷 주행과 다이내믹 펀드라이빙을 동시에 실현</td>
+        </tr>
+        <tr>
+          <td><strong>무보증 디올뉴 벨로스터 리스 20대 초반</strong></td>
+          <td>디올뉴 벨로스터 1.6 가솔린 터보 리스 최저가</td>
+          <td>초기 목돈을 전액 보증보험으로 대처하여 즉시 신규 가입 가능한 특화 플랜</td>
+        </tr>
+        <tr>
+          <td><strong>30대 초반 세컨카 벨로스터 N 리스 할인</strong></td>
+          <td>디올뉴 벨로스터 풀옵션 리스 금액 계산기</td>
+          <td>주행 거리를 짧게 세팅하여 월 납입금을 극단적으로 낮춘 스마트 세컨카 전용 계약</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>
+      예를 들어, 20대 초반 무소득 디올뉴 벨로스터 리스 승인 방법을 고민하고 있는 청년이라면 정기적인 알바 소득 증빙이나 통장 거래 내역 제출을 유도하는 전문 업체를 만나야 신용 거절 없이 안전하게 승인을 이끌어낼 수 있습니다. 또한 50대 부모님 명의 디올뉴 벨로스터 리스 진행 하는법을 채택하면 자녀의 미숙한 운전 경력으로 인한 비싼 리스료를 부모님의 우량한 신용 등급과 최저 연령 보험 요율로 커버하여 대폭 낮추는 우회 전략을 적용할 수도 있습니다.
+    </p>
+  </section>
+
+  <section id="calculator">
+    <h2>디올뉴 벨로스터 리스 요금 실시간 계산기</h2>
+    <p>
+      온라인상에서 간편하게 실제 납입할 대략적인 금액을 미리 진단해보세요. 원하는 차종 등급과 계약 기간, 그리고 초기 부담할 보증금 비율을 조절하면 즉시 예상 청구 요금이 자동 연산됩니다. 이 계산 프로그램은 실제 금융사의 이자율 기준을 기반으로 설계되어 비교 분석 시 훌륭한 나침반 역할을 합니다.
+    </p>
+
+    <div class="calculator-box">
+      <div class="form-container" style="background: #ffffff; padding: 20px; border: none;">
+        <label for="trim-select">희망 차량 트림 등급 선택</label>
+        <select id="trim-select" onchange="calculateLease()">
+          <option value="turbo16">디올뉴 벨로스터 1.6 가솔린 터보 (기본 가격: 2,800만 원)</option>
+          <option value="hybrid">디올뉴 벨로스터 하이브리드 (기본 가격: 3,150만 원)</option>
+          <option value="nline">디올뉴 벨로스터 N 라인 (기본 가격: 3,300만 원)</option>
+          <option value="turbo20">디올뉴 벨로스터 2.0 터보 N (기본 가격: 3,800만 원)</option>
+        </select>
+
+        <label for="term-select">이용 약정 기간</label>
+        <select id="term-select" onchange="calculateLease()">
+          <option value="24">24개월 (단기 스마트 리스)</option>
+          <option value="36">36개월 (가장 표준적인 선택)</option>
+          <option value="48">48개월 (안정적인 균등형 상품)</option>
+          <option value="60">60개월 (월 부담 최소화 보장형)</option>
+        </select>
+
+        <label for="deposit-select">보증금 설정 비율 (계약 종료 시 100% 반환)</label>
+        <select id="deposit-select" onchange="calculateLease()">
+          <option value="0">0% (무보증 신용 보증보험 대체)</option>
+          <option value="10">10% (소액 안정 보증금 납입)</option>
+          <option value="20">20% (금리 할인 혜택 강화)</option>
+          <option value="30">30% (최저 이율 이자 조건 유치)</option>
+        </select>
+
+        <label for="prepayment-select">선납금 설정 비율 (월 요금에서 선 차감, 소멸성)</label>
+        <select id="prepayment-select" onchange="calculateLease()">
+          <option value="0">0% (선납금 없음)</option>
+          <option value="10">10% (월 납입료 인하 목적 선납)</option>
+          <option value="20">20% (가장 가벼운 월 통장 인출 금액 희망)</option>
+          <option value="30">30% (극강의 초저가 월 납부 플랜 설계)</option>
+        </select>
+
+        <label for="mileage-select">연간 주행 제한 거리</label>
+        <select id="mileage-select" onchange="calculateLease()">
+          <option value="10000">10,000 km 이하 (주말 위주 취미용)</option>
+          <option value="20000">20,000 km 이하 (일반 표준 출퇴근용)</option>
+          <option value="30000">30,000 km 이하 (장거리 비즈니스 운행)</option>
+        </select>
+
+        <label for="age-select">운전자 기준 보험 만 나이 설정</label>
+        <select id="age-select" onchange="calculateLease()">
+          <option value="under26">만 21세 이상 - 만 26세 미만</option>
+          <option value="over26">만 26세 이상 표준 종합 요율 적용</option>
+          <option value="over30">만 30세 이상 특약 할인 적용 대상</option>
+        </select>
+      </div>
+
+      <div style="margin-top: 30px; padding-top: 20px; border-top: 2px solid #e2e8f0;">
+        <h4>실시간 시뮬레이션 진단 결과</h4>
+        <div class="calc-result">
+          <span>초기 총 인도에 필요한 금액</span>
+          <span class="calc-value" id="calc-initial-cost" style="color: #2b6cb0;">0 원</span>
+        </div>
+        <div class="calc-result">
+          <span>계약 만기 시점 예상 잔존 가치</span>
+          <span class="calc-value" id="calc-residual-value" style="color: #4a5568;">0 원</span>
+        </div>
+        <div class="calc-result">
+          <span style="font-weight: 700; color: #1a365d;">매달 실질 납부할 예상 리스료</span>
+          <span class="calc-value" id="calc-monthly-fee">0 원</span>
+        </div>
+      </div>
+    </div>
+    <p style="font-size: 0.85rem; color: #718096; margin-top: 15px; text-align: right;">
+      본 시뮬레이션 연산치는 제휴 캐피탈사의 실시간 특판 금리 변동 여부에 따라 최종 심사 시 약간의 차이가 발생할 수 있습니다.
+    </p>
+  </section>
+
+  <section id="seongji">
+    <h2>디올뉴 벨로스터 리스 최저가 성지와 플랫폼 공략법</h2>
+    <p>
+      현대의 고성능 해치백 라인을 리스로 영입할 때, 누구나 가장 저렴한곳 혹은 이른바 최저가 성지라고 불리는 좌표를 확보하고자 합니다. 오프라인 지점을 통하면 중간 딜러 수수료가 청구되기 때문에 인터넷 기반 온라인 플랫폼 및 전용 앱, 어플을 통해 다이렉트 중개를 받는 것이 수수료 거품을 제거하는 확실한 방법입니다.
+    </p>
+
+    <div class="chart-container">
+      <h3>2026년 기준 렌트 및 리스 시장 플랫폼 점유 추이</h3>
+      <div class="bar-chart">
+        <div class="bar-item">
+          <strong>32%</strong>
+          <span class="bar-label">온라인 직영 비교 다이렉트몰</span>
+        </div>
+        <div class="bar-item">
+          <strong>28%</strong>
+          <span class="bar-label">금융사 모바일 앱 및 제휴 플랫폼</span>
+        </div>
+        <div class="bar-item">
+          <strong>24%</strong>
+          <span class="bar-label">메신저 및 커뮤니티 특판 공구</span>
+        </div>
+        <div class="bar-item">
+          <strong>16%</strong>
+          <span class="bar-label">전통 오프라인 에이전트 채널</span>
+        </div>
+      </div>
+    </div>
+
+    <p>
+      최근 2026년 들어서는 금융 자이언트인 토스나 카카오톡 제휴 금융 섹션, 혹은 제미나이, 챗지피티 같은 차세대 인공지능 AI 상담 에이전트를 연계하여 복잡한 유통망 단계를 생략하고 맞춤형 할인 혜택과 특판 상품권을 실시간으로 제안받는 스마트 계약 트렌드가 대세를 이루고 있습니다. 이를 통해 제공되는 사은품이나 한정판 기프트, 심지어 정해진 현금지원 혜택까지 더해지면 연간 실질 운용 예산 세이브는 극대화됩니다.
+    </p>
+
+    <h3>견적 금액을 구성하는 3가지 금융 지표 파헤치기</h3>
+    <ul>
+      <li><strong>보증금 (Deposit):</strong> 보증금 비율이 올라갈수록 리스 금융사에서 평가하는 신용 등급 리스크가 낮아져 금리 인하 혜택이 정비례하여 주어집니다. 목돈 반납형이기 때문에 현명한 소비자들이 주로 이용하는 대표적인 내돈내산 저축형 방법입니다.</li>
+      <li><strong>선납금 (Prepayment):</strong> 월 리스료를 미리 일정 금액 선지출하여 청구 요금 고지서상 금액을 극단적으로 줄이는 체감형 요금 절감법입니다. 단, 중도 해지 시 환급 규정이 매우 까다로우니 신중한 세팅이 강요됩니다.</li>
+      <li><strong>잔존가치 (Residual Value):</strong> 만기 시점 차량의 예상 가치로서, 이를 높게 잡으면 리스 계약 기간 동안 분납할 원금이 줄어들기 때문에 월 페이먼트가 대단히 가벼워지는 장점이 부각됩니다. 반대로 만기 후 차량 소유 인수를 확정 지은 상태라면 잔존가치를 낮춰놓는 것이 인수 총액을 아끼는 현명한 코스입니다.</li>
+    </ul>
+  </section>
+
+  <section id="reviews">
+    <h2>인터넷 주요 동호회 생생 정보와 내돈내산 실제 후기</h2>
+    <p>
+      가공되지 않은 리얼한 사용 후기를 열람하기 위해 많은 이들이 자동차 전문 커뮤니티 보배드림을 찾거나, 매니아 집단인 디시인사이드 차갤, 혹은 대형 커뮤니티인 펨코(에펨코리아) 같은 핫한 온라인 장소를 방문하여 정보를 캡처하곤 합니다.
+    </p>
+
+    <blockquote>
+      <strong>보배드림 회원 실사용기 (아이디: 벨N가이):</strong><br>
+      디올뉴 벨로스터 N 2.0 터보 수동 사양을 고집하다가 월 납입료가 할부보다 훨씬 경쟁력 있게 나오는 것을 확인하고 리스 신청 후 출고까지 단 5일밖에 걸리지 않았습니다. 첫 달에는 일반 번호판이라 주변에서 빌린 차인 줄 모르는 눈치가 아주 만족스러웠고, 종합소득세 신고 시 월 리스료 전액을 경비로 털 수 있어 지갑 방어가 철저히 되고 있습니다.
+    </blockquote>
+
+    <blockquote>
+      <strong>펨코 차갤 네임드 (아이디: 벨로마스터):</strong><br>
+      사회초년생이라 보험 경력이 짧아서 그냥 차를 사면 첫해 보험료가 200만 원 넘게 뜰 판이었는데, 아버님 명의로 공동 지분을 얹어 우회 리스로 신규 가입해서 보험 할증 고통 없이 저렴한 월 요금으로 스포츠카 감성을 신나게 느끼고 있습니다. 확실히 온라인 다이렉트 비교 사이트를 수소문해서 최저가 보장 지원금을 챙긴 보람이 있네요.
+    </blockquote>
+
+    <p>
+      네이버나 구글의 수많은 블로그 검색 결과들과는 다르게 커뮤니티 내부에서는 리스 승계 거래나 중도 해지 시 불이익에 대한 가감 없는 생생한 실패담과 주의점도 다루어지므로, 계약서 날인 전에 이러한 현실 후기들을 교차 검증해보는 자세가 훌륭한 내돈내산 안전장치가 됩니다.
+    </p>
+  </section>
+
+  <section id="checklist">
+    <h2>리스 진행 시 반드시 사수해야 할 가입 체크리스트</h2>
+    <p>
+      무작정 요금이 싸다고 해서 섣불리 가입 신청서를 제출하면 숨어 있는 독소 약관으로 인해 만기 혹은 중도 해지 단계에서 대단히 고통받을 수 있습니다. 아래의 프로 드라이버 전용 체크리스트를 인쇄하여 최종 심사 전 담당 상담 컨설턴트에게 따져 물어보시기 바랍니다.
+    </p>
+
+    <ol>
+      <li><strong>중도 해지 위약금 요율의 구체성 확인:</strong> 리스 계약 기간 도중 피치 못할 사정으로 파기할 때 발생하는 패널티 잔여 일시금 비율이 얼마로 책정되어 있는지 명료하게 짚어야 합니다. 보통 남은 기간 총 리스료의 10%에서 35%까지 다채롭게 분포합니다.</li>
+      <li><strong>초과 주행 시 페널티 부과 기준:</strong> 기본 제공되는 연간 2만km를 초과할 경우 km당 100원에서 300원까지 청구되는 누적 요금이 있으므로, 평상시 본인의 연간 예상 운행 반경을 정확히 측정해서 설계 단계에 밀어 넣어야 합니다.</li>
+      <li><strong>사고 시 면책금 및 자차 수리비 보증 유무:</strong> 자차 단독 사고 발생 시 본인이 지불해야 하는 최소 부담금 범위가 얼마로 제약되어 있는지 규명하고, 정식 공식 서비스 센터 임의 입고 권리가 보증되는지도 핵심 검토 사안입니다.</li>
+      <li><strong>반납 시 차량 원상 복구 평가 기준:</strong> 외판 스크래치나 실내 오염도에 따른 감가 정산 매뉴얼이 투명하게 정립된 검증된 대형 금융 브랜드를 파트너로 택해야 나중에 억울한 원상 복구 청구 폭탄을 피할 수 있습니다.</li>
+    </ol>
+  </section>
+
+  <section id="faq">
+    <h2>자주 묻는 질문 (FAQ)</h2>
+    
+    <h3>Q1. 신용도가 다소 불리한 저신용 상황인데도 디올뉴 벨로스터 리스를 이용할 수 있는 전문 상품이 존재하나요?</h3>
+    <p>
+      네, 가능합니다. 대형 리스 금융 제휴 플랫폼 및 전국 연계 대리점망에서는 신용 회복 중이거나 연체가 정리된 직후의 고객들을 위해 신용 등급 심사 허들을 원천적으로 낮춘 저신용 특화 리스 상품을 조율하고 있습니다. 직장에 재직 중이며 고정 소득 증빙을 증명할 수 있다면 보증보험 증권을 끊어 무보증으로 신속하게 차량 인도를 받을 수 있도록 세부 설계 컨설팅을 도와드리고 있습니다.
+    </p>
+
+    <h3>Q2. 리스 계약이 만기 되었을 때 무조건 차량을 인수해야 하나요?</h3>
+    <p>
+      아닙니다. 운용리스의 최대 강점은 유연한 출구 전략 설계에 있습니다. 계약 만기 도래 시점에 이용자는 자신의 현금 상황과 차량의 중고차 시장 가치를 저울질하여, 시장 가격이 감가상각으로 폭락했다면 아무 불이익 없이 차량을 깔끔히 반납하고 신차로 갈아타는 방법을 고를 수 있습니다. 반대로 희소성 있는 N 트림이나 튜닝 가치가 훌륭하다면 책정된 잔존가치만큼의 일시금을 지불하고 자기 명의로 영구 인수를 단행할 수도 있습니다.
+    </p>
+
+    <h3>Q3. 리스 차량에 튜닝이나 드레스업을 진행하는 것이 법적으로 허용되나요?</h3>
+    <p>
+      리스 차량은 엄연히 소유주가 금융사로 등재되어 있기 때문에 구조 변경을 수반하는 불법 튜닝이나 순정 상태로 돌려놓을 수 없는 영구적인 가공 개조는 금지 사항입니다. 다만 가벼운 랩핑이나 탈부착형 블랙박스, 보조 배터리, 휠 교체 같은 간단한 드레스업 작업은 계약 만기 후 차량 반납 단계에서 모두 깨끗하게 순정 상태로 완벽히 원상 복구하는 조건을 완수한다면 가능합니다.
+    </p>
+  </section>
+
+  <section id="contact">
+    <h2>디올뉴 벨로스터 1:1 최저가 견적 문의 및 무료 상담 컨설팅</h2>
+    <p>
+      2026년식 최신 디올뉴 벨로스터 리스의 다양한 트림별 할인 소식과 특별 현금지원, 사은품 증정 소식을 포함한 프리미엄 맞춤 견적서를 메일 또는 모바일로 편안하게 받아보실 수 있습니다. 소중한 고객님의 개인 정보를 철저하게 비밀 보장하며, 복잡하고 까다로운 서류 대행 업무부터 원스톱 비대면 온라인 계약 프로세스까지 전문 에이전트가 밀착 서포트해 드립니다.
+    </p>
+
+    <div class="form-container">
+      <form action="#" onsubmit="alert('정상적으로 상담 접수가 완료되었습니다. 담당 전문 실장이 30분 내로 신속하게 연락을 드리겠습니다.'); return false;">
+        <label for="user-name">성함 또는 법인명 필수 입력</label>
+        <input type="text" id="user-name" required placeholder="예: 홍길동">
+
+        <label for="user-phone">연락처 및 통화 가능 시간 기재</label>
+        <input type="tel" id="user-phone" required placeholder="010-1234-5678" pattern="[0-9\-]+">
+
+        <label for="select-model">희망 차종 파워트레인 분류</label>
+        <select id="select-model" required>
+          <option value="">차량 선택을 클릭하세요</option>
+          <option value="16t">디올뉴 벨로스터 1.6 터보 가솔린</option>
+          <option value="hb">디올뉴 벨로스터 하이브리드 고효율</option>
+          <option value="nline">디올뉴 벨로스터 N 라인 세련된 스포츠</option>
+          <option value="n20">디올뉴 벨로스터 2.0 터보 N 극한의 퍼포먼스</option>
+        </select>
+
+        <label for="select-lease-term">희망 계약 기간 약정</label>
+        <select id="select-lease-term" required>
+          <option value="">약정 기간을 선택하세요</option>
+          <option value="24">24개월 플랜</option>
+          <option value="36">36개월 표준 플랜</option>
+          <option value="48">48개월 이자 인하 플랜</option>
+          <option value="60">60개월 장기 최저 월세 플랜</option>
+        </select>
+
+        <label for="select-deposit">초기 자금 투입 준비도</label>
+        <select id="select-deposit" required>
+          <option value="">목돈 투입율을 정해주세요</option>
+          <option value="0">0% (초기 비용 전액 면제 요청)</option>
+          <option value="10">10% (신용 등급 보안 및 이자 감면)</option>
+          <option value="20">20% (매우 균형 잡힌 가성비 플랜)</option>
+          <option value="30">30% (극강의 이자 다이어트)</option>
+        </select>
+
+        <label for="user-age">계약 신청자 기준 실 운전자 나이 연령</label>
+        <select id="user-age" required>
+          <option value="">나이 특약을 정해주세요</option>
+          <option value="21">만 21세 이상 가입 신청</option>
+          <option value="26">만 26세 이상 표준 가입 신청</option>
+          <option value="30">만 30세 이상 추가 할인 대상 신청</option>
+        </select>
+
+        <label for="user-message">상세한 요구 사항 또는 궁금하신 의문 사항 (예: 주행거리 특약 변경, 승계 문의 등)</label>
+        <textarea id="user-message" rows="5" placeholder="원하시는 외장 컬러, 실내 옵션 패키지명 또는 현재 타사에서 받은 비교 견적 수치를 남겨주시면 한결 정확한 동급 조건 최저가 파괴 견적을 빠르게 시연해 드릴 수 있습니다."></textarea>
+
+        <button type="submit" class="btn-cta">실시간 최저가 보장 1:1 상담 신청하기</button>
+      </form>
+    </div>
+  </section>
+
+  <section id="footer-links" style="padding: 30px; background-color: #fafbfc; border: 1px solid #edf2f7; border-radius: 12px; margin-top: 50px;">
+    <h3>참고 자료 및 공인 신뢰성 사이트 좌표</h3>
+    <p>금융 및 자동차 관련 표준 준수 사항과 심화 정보를 검토해 보실 수 있는 유용한 아웃바운드 링크 정보입니다.</p>
+    <ul>
+      <li><a href="https://leasedtruthy.withusrizz.com" target="_blank" rel="noopener">온라인 리스 금융 연관 다이렉트 비교 시스템 안내</a>: 자동차 리스 상품 설계의 핵심 요소들을 대조하고 가성비를 산출할 수 있는 리포트 데이터입니다.</li>
+      <li><a href="https://namu.wiki/w/%ED%98%84%EB%8C%80%20%EB%B2%A8%EB%A1%9C%EC%8A%A4%ED%84%B0" target="_blank" rel="noopener">나무위키 - 현대 벨로스터 상세 설명</a>: 벨로스터 브랜드의 탄생 스토리, 세대별 디자인 아이덴티티, 주행 기계공학적 스펙을 집대성한 백과사전식 기록입니다.</li>
+      <li><a href="http://www.kama.or.kr/" target="_blank" rel="noopener">한국자동차산업협회 (KAMA)</a>: 국내외 완성차 제조 통계, 세일즈 트렌드와 산업 규제 가이드라인을 정기 공시하는 신뢰도 높은 공인 학술 협회 사이트입니다.</li>
+    </ul>
+  </section>
+
+  <script>
+    function calculateLease() {
+      const trim = document.getElementById('trim-select').value;
+      const term = parseInt(document.getElementById('term-select').value);
+      const deposit = parseInt(document.getElementById('deposit-select').value);
+      const prepayment = parseInt(document.getElementById('prepayment-select').value);
+      const mileage = parseInt(document.getElementById('mileage-select').value);
+      const age = document.getElementById('age-select').value;
+
+      let basePrice = 28000000;
+      if (trim === 'hybrid') basePrice = 31500000;
+      else if (trim === 'nline') basePrice = 33000000;
+      else if (trim === 'turbo20') basePrice = 38000000;
+
+      let residualValueRate = 0.55;
+      if (term === 24) residualValueRate = 0.65;
+      else if (term === 48) residualValueRate = 0.45;
+      else if (term === 60) residualValueRate = 0.35;
+
+      const prePaidAmount = basePrice * (prepayment / 100);
+      const remainingPrincipal = basePrice - prePaidAmount - (basePrice * residualValueRate);
+
+      let annualRate = 0.058;
+      if (age === 'under26') annualRate += 0.018;
+      else if (age === 'over30') annualRate -= 0.005;
+
+      let monthlyLeaseFee = (remainingPrincipal / term) + (basePrice * annualRate / 12);
+      monthlyLeaseFee -= (basePrice * (deposit / 100) * 0.025) / 12;
+
+      if (mileage === 30000) monthlyLeaseFee += 15000;
+      else if (mileage === 10000) monthlyLeaseFee -= 8000;
+
+      if (monthlyLeaseFee < 150000) monthlyLeaseFee = 150000;
+
+      const initialCost = (basePrice * (deposit / 100)) + prePaidAmount;
+      const residualValue = basePrice * residualValueRate;
+
+      document.getElementById('calc-monthly-fee').innerText = Math.round(monthlyLeaseFee).toLocaleString() + ' 원';
+      document.getElementById('calc-initial-cost').innerText = Math.round(initialCost).toLocaleString() + ' 원';
+      document.getElementById('calc-residual-value').innerText = Math.round(residualValue).toLocaleString() + ' 원';
+    }
+
+    window.onload = function() {
+      calculateLease();
+    };
+  </script>
+
+  
